@@ -17,9 +17,7 @@
  */
 package org.sonar.plugins.web.rules;
 
-import mysoft.sonar.plugins.web.check.AttributeRegExpCheck;
-import mysoft.sonar.plugins.web.check.AvoidConditionalHtmlCommentCheck;
-import mysoft.sonar.plugins.web.check.StyleAttributeRegExpCheck;
+import mysoft.sonar.plugins.web.check.*;
 import org.sonar.plugins.web.checks.attributes.IllegalAttributeCheck;
 import org.sonar.plugins.web.checks.attributes.RequiredAttributeCheck;
 import org.sonar.plugins.web.checks.coding.ComplexityCheck;
@@ -83,6 +81,9 @@ public final class CheckClasses {
             AvoidConditionalHtmlCommentCheck.class,
             StyleAttributeRegExpCheck.class,
             AttributeRegExpCheck.class,
+            AttributeNameRegExpCheck.class,
+            TagNameRegExpCheck.class,
+            mysoft.sonar.plugins.web.check.ParentElementRequiredCheck.class,
             // 明源软件自定义分析规则 End
             AvoidHtmlCommentCheck.class,
             ChildElementRequiredCheck.class,

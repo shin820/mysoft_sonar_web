@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 
 @Rule(key = "Mysoft_AttributeRegExpCheck",
         name = "Mysoft Rule : Attribute Check By Reg Expression",
-        description = "通过正则表达式来检查属性的格式是否正确",
+        description = "通过正则表达式来检查属性值的格式是否正确",
         priority = Priority.MAJOR)
 public class AttributeRegExpCheck extends AbstractPageCheck {
 
