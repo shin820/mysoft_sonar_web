@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * Created by liux09 on 14-2-18.
  */
-public class TagNameRegExpCheckTest extends AbstractCheckTester {
+public class TagsMustBeSelfClosedCheckTest extends AbstractCheckTester {
 
     @Rule
     public CheckMessagesVerifierRule checkMessagesVerifier = new CheckMessagesVerifierRule();
@@ -39,13 +39,15 @@ public class TagNameRegExpCheckTest extends AbstractCheckTester {
     @Test
     public void should_detect_attribute_name_violation_on_html_documents() {
 
-        TagNameRegExpCheck tagNameRegExpCheck = new TagNameRegExpCheck();
+        TagsMustBeSelfClosedCheck tagsSelfClosedCheck = new TagsMustBeSelfClosedCheck();
+        tagsSelfClosedCheck.tags = "img,br,input";
 
-        WebSourceCode sourceCode = TestHelper.scan(new File("src/test/resources/checks/Mysoft/TagNameRegExpCheck.html"), tagNameRegExpCheck);
+        WebSourceCode sourceCode = TestHelper.scan(new File("src/test/resources/checks/Mysoft/TagMustBeSelfClosedCheck.html"), tagsSelfClosedCheck);
 
         List<Violation> violations = sourceCode.getViolations();
         checkMessagesVerifier.verify(violations)
-                .next().atLine(3).withMessage("标签名称P不匹配正则表达式^[^A-Z]+$")
-                .next().atLine(5).withMessage("标签名称H1不匹配正则表达式^[^A-Z]+$");
+                .next().atLine(1).withMessage("标签input必须自关闭")
+                .next().atLine(3).withMessage("标签img必须自关闭")
+                .next().atLine(5).withMessage("标签br必须自关闭");
     }
 }
