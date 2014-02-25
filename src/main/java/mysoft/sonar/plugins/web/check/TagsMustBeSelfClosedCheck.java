@@ -45,7 +45,7 @@ public class TagsMustBeSelfClosedCheck extends AbstractPageCheck {
 
         if (node.getNodeType() != NodeType.TAG) return;
 
-        if (isInSelfClosedTags(node) && !node.getCode().endsWith("/>")) {
+        if (isInSelfClosedTags(node) && !node.getCode().trim().endsWith("/>")) {
             createViolation(node.getStartLinePosition(), "标签" + node.getNodeName() + "必须自关闭");
         }
     }

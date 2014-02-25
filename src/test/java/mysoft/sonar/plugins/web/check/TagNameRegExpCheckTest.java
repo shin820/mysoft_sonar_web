@@ -45,7 +45,7 @@ public class TagNameRegExpCheckTest extends AbstractCheckTester {
 
         List<Violation> violations = sourceCode.getViolations();
         checkMessagesVerifier.verify(violations)
-                .next().atLine(3).withMessage("标签名称P不匹配正则表达式^[^A-Z]+$")
-                .next().atLine(5).withMessage("标签名称H1不匹配正则表达式^[^A-Z]+$");
+                .next().atLine(3).withMessage("标签名称P不匹配正则表达式^([^A-Z]+)|(.+:.+)$")
+                .next().atLine(5).withMessage("标签名称H1不匹配正则表达式^([^A-Z]+)|(.+:.+)$");
     }
 }

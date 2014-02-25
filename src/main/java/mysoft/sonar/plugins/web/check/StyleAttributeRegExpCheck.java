@@ -97,8 +97,10 @@ public class StyleAttributeRegExpCheck extends AbstractPageCheck {
 
         for (String style : styles) {
             if (StringUtils.isEmpty(style)) continue;
+            if (!style.contains(":")) continue;
+
             String[] pair = StringUtils.split(style, ":");
-            if (pair.length <= 0) continue;
+            if (pair.length != 2) continue;
             hash.put(pair[0].trim(), pair[1].trim());
         }
 

@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
         priority = Priority.MAJOR)
 public class TagNameRegExpCheck extends AbstractPageCheck {
 
-    private static final String DEFAULT_REG_EXPRESSION = "^[^A-Z]+$";
+    private static final String DEFAULT_REG_EXPRESSION = "^([^A-Z]+)|(.+:.+)$";
 
     @RuleProperty(
             key = "regExpression",

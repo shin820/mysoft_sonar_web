@@ -25,10 +25,13 @@ import org.sonar.plugins.web.checks.AbstractPageCheck;
 import org.sonar.plugins.web.node.TagNode;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Rule(
   key = "Mysoft_ParentElementRequiredCheck",
- name = "Mysoft Rule : Parent Element Required Check",
+  name = "Mysoft Rule : Parent Element Required Check",
+  description = "子标签必须嵌套在指定的任何一个父标签内",
   priority = Priority.MAJOR,
   cardinality = Cardinality.MULTIPLE)
 public class ParentElementRequiredCheck extends AbstractPageCheck {
@@ -51,17 +54,17 @@ public class ParentElementRequiredCheck extends AbstractPageCheck {
     if(!element.equalsElementName(child))  return;
 
     if ( (element.getParent() == null || !hasParent(element))) {
-      createViolation(element.getStartLinePosition(), "元素 '" + child + "' 必须有一个父元素 '" + parent+"'.");
+      createViolation(element.getStartLinePosition(), "元素 '" + child + "' 必须有一个与制定正则匹配的父元素 '" + parent+"'.");
     }
   }
 
   private boolean hasParent(TagNode element)
   {
-      String[] parents=parent.split(",");
-      for(String parent:parents)
+      Pattern pattern= Pattern.compile(parent);
+      Matcher mathcer=pattern.matcher(element.getParent().getNodeName());
+      if(mathcer.find())
       {
-          if(parent.trim()=="") continue;
-          if(element.getParent().equalsElementName(parent)) return true;
+          return true;
       }
       return false;
   }

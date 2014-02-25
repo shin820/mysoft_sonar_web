@@ -41,13 +41,13 @@ public class ParentElementRequiredCheckTest extends AbstractCheckTester {
 
         ParentElementRequiredCheck parentElementRequiredCheck = new ParentElementRequiredCheck();
         parentElementRequiredCheck.child="tr";
-        parentElementRequiredCheck.parent="table,thead,tbody,tfoot";
+        parentElementRequiredCheck.parent="^(table|thead|tbody|tfoot)$";
 
         WebSourceCode sourceCode = TestHelper.scan(new File("src/test/resources/checks/Mysoft/ParentElementRequiredCheck.html"), parentElementRequiredCheck);
 
         List<Violation> violations = sourceCode.getViolations();
         checkMessagesVerifier.verify(violations)
-                .next().atLine(18).withMessage("元素 'tr' 必须有一个父元素 'table,thead,tbody,tfoot'.")
-                .next().atLine(22).withMessage("元素 'tr' 必须有一个父元素 'table,thead,tbody,tfoot'.");
+                .next().atLine(18).withMessage("元素 'tr' 必须有一个与制定正则匹配的父元素 '^(table|thead|tbody|tfoot)$'.")
+                .next().atLine(22).withMessage("元素 'tr' 必须有一个与制定正则匹配的父元素 '^(table|thead|tbody|tfoot)$'.");
     }
 }
