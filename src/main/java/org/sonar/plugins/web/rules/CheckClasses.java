@@ -85,6 +85,7 @@ public final class CheckClasses {
             TagNameRegExpCheck.class,
             mysoft.sonar.plugins.web.check.ParentElementRequiredCheck.class,
             TagsMustBeSelfClosedCheck.class,
+            OnlyOneChildCheck.class,
             // 明源软件自定义分析规则 End
             AvoidHtmlCommentCheck.class,
             ChildElementRequiredCheck.class,
